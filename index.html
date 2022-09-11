@@ -19,17 +19,17 @@
 
         <section class="profile">
             <div class="profile__item">
-            <img class="profile__image" src="./image/avatar.jpg">
-            <div class="profile__cards">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button">
-                    <img src="./image/edit__button.svg">
-                </button>
-                <p class="profile__name-info">Исследователь океана</p>
+                <img class="profile__image" src="./image/avatar.jpg">
+                <div class="profile__cards">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit-button">
+                    </button>
+                    <p class="profile__name-info">Исследователь океана</p>
 
+                </div>
+                <!--Закрывает profile-info-->
             </div>
-            <!--Закрывает profile-info-->
-        </div><!--Закрывает profile__item-->
+            <!--Закрывает profile__item-->
             <button class="profile__add-button">
                 <img src="./image/add-button.svg">
             </button>
@@ -41,7 +41,7 @@
                 <img class="element__image" src="./image/karachaevks.jpg">
                 <div class="element__bottom">
                     <p class="element__title">Карачаевск</p>
-                    <button class="element__like"><img src="./image/like.svg"></button>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
                 </div>
                 <!--Закрывает bottom-element-->
             </article>
@@ -51,7 +51,7 @@
                 <img class="element__image" src="./image/dombai.jpg">
                 <div class="element__bottom">
                     <p class="element__title">Гора Эльбрус</p>
-                    <button class="element__like"><img src="./image/like.svg"></button>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
             </article>
             <!--Закрывает element-->
 
@@ -59,7 +59,7 @@
                 <img class="element__image" src="./image/dombai.jpg">
                 <div class="element__bottom">
                     <p class="element__title">Домбай</p>
-                    <button class="element__like"><img src="./image/like.svg"></button>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
             </article>
             <!--Закрывает element-->
 
@@ -67,7 +67,7 @@
                 <img class="element__image" src="./image/elbrus.jpg">
                 <div class="element__bottom">
                     <p class="element__title">Гора Эльбрус</p>
-                    <button class="element__like"><img src="./image/like.svg"></button>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
             </article>
             <!--Закрывает element-->
 
@@ -75,7 +75,7 @@
                 <img class="element__image" src="./image/dombai.jpg">
                 <div class="element__bottom">
                     <p class="element__title">Домбай</p>
-                    <button class="element__like"><img src="./image/like.svg"></button>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
             </article>
             <!--Закрывает element-->
 
@@ -83,7 +83,7 @@
                 <img class="element__image" src="./image/karachaevks.jpg">
                 <div class="element__bottom">
                     <p class="element__title">Карачаевск</p>
-                    <button class="element__like"><img src="./image/like.svg"></button>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
             </article>
             <!--Закрывает element-->
 
@@ -92,11 +92,40 @@
     </main>
 
     <footer class="footer">
+
         <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
 
-    <script src="./pages/index.js"></script>
 
+    <section class="overlay">
+        <div class="popup">
+            <div class="popup__container">
+                <form class="popup__form">
+                    <h2 class="popup__title">Редактировать профиль</h2>
+
+
+                    <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input-name">
+                    <img src="./image/Line.svg" class="popup_line">
+
+
+                    <input type="text" placeholder="Исследователь океана" class="popup__input popup__input-job">
+                    <img src="./image/Line.svg" class="popup_line">
+
+
+                    <button class="popup__submit" type="submit">
+                        <p class="popup__save">Сохранить</p>
+                    </button>
+
+                    <button class="popup__close-button"><img src="./image/Close Icon.svg"></button>
+                </form>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <script src="./pages/index.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,16 @@
 .element__like {
     background-color: white;
     border: 0px;
+    margin-left: 20px;
+    margin-right: 5px;
+
+}
+
+.element__like:hover {
+    opacity: 0.5;
+}
+
+.element__like:active {
+    background-image: url(../../../image/Union.svg);
+    background-repeat: no-repeat;
 }

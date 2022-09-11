@@ -8,16 +8,16 @@
     margin-top: 16px;
     color: white;
     margin: 0;
+    grid-area: "profile__name-info";
 }
 
 @media screen and (max-width: 820px) {
     .profile__name-info {
-        min-width: 282px;
+        min-width: 165px;
         font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 17px;
-text-align: center;
-    }
+justify-self: center;    }
 }

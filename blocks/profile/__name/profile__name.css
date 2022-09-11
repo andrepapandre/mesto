@@ -7,6 +7,8 @@
     max-width: 288px;
     color: white;
     margin: 0;
+    justify-self: left;
+    grid-area: "profile__name";
 }
 
 @media screen and (max-width: 1038px) {
@@ -24,5 +26,6 @@
 @media screen and (max-width: 820px) {
     .profile__name {
         width: 189px;
+        text-align: center;
     }
 }
