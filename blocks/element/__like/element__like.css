@@ -13,4 +13,5 @@
 .element__like:active {
     background-image: url(../../../image/Union.svg);
     background-repeat: no-repeat;
+    opacity: 1;
 }

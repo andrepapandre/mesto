@@ -12,14 +12,14 @@
 
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="./image/mesto__logo.svg">
+        <img class="header__logo" src="./image/mesto__logo.svg" alt="Логотип бренда Место">
         <div style="border-bottom: solid 1px #545454;">solid</div>
     </header>
     <main class="container">
 
         <section class="profile">
             <div class="profile__item">
-                <img class="profile__image" src="./image/avatar.jpg">
+                <img class="profile__image" src="./image/avatar.jpg" alt="Аватар профиля">
                 <div class="profile__cards">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button type="button" class="profile__edit-button">
@@ -31,59 +31,70 @@
             </div>
             <!--Закрывает profile__item-->
             <button class="profile__add-button">
-                <img src="./image/add-button.svg">
+                <img src="./image/add-button.svg" alt="Кнопка добавить или изменить данные профиля">
             </button>
         </section>
         <!--Закрывает profile-->
 
-        <section class="elements">
+        <section class="elements" aria-label="Карточки">
             <article class="element">
-                <img class="element__image" src="./image/karachaevks.jpg">
+                <img class="element__image" src="./image/karachaevks.jpg" alt="Природа Карачаевска">
                 <div class="element__bottom">
-                    <p class="element__title">Карачаевск</p>
-                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
+                    <h2 class="element__title">Карачаевск</h2>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"
+                            alt="Лайк"></button>
                 </div>
                 <!--Закрывает bottom-element-->
             </article>
             <!--Закрывает element-->
 
             <article class="element">
-                <img class="element__image" src="./image/dombai.jpg">
+                <img class="element__image" src="./image/dombai.jpg" alt="Горы Домбая">
                 <div class="element__bottom">
-                    <p class="element__title">Гора Эльбрус</p>
-                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
+                    <h2 class="element__title">Гора Эльбрус</h2>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"
+                            alt="Лайк"></button>
+                </div>
             </article>
             <!--Закрывает element-->
 
             <article class="element">
-                <img class="element__image" src="./image/dombai.jpg">
+                <img class="element__image" src="./image/dombai.jpg" alt="Горы Домбая">
                 <div class="element__bottom">
-                    <p class="element__title">Домбай</p>
-                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
+                    <h2 class="element__title">Домбай</h2>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"
+                            alt="Лайк"></button>
+                </div>
             </article>
             <!--Закрывает element-->
 
             <article class="element">
-                <img class="element__image" src="./image/elbrus.jpg">
+                <img class="element__image" src="./image/elbrus.jpg" alt="Гора Эльбрус">
                 <div class="element__bottom">
-                    <p class="element__title">Гора Эльбрус</p>
-                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
+                    <h2 class="element__title">Гора Эльбрус</h2>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"
+                            alt="Лайк"></button>
+                </div>
             </article>
             <!--Закрывает element-->
 
             <article class="element">
-                <img class="element__image" src="./image/dombai.jpg">
+                <img class="element__image" src="./image/dombai.jpg" alt="Горы Домбая">
                 <div class="element__bottom">
-                    <p class="element__title">Домбай</p>
-                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
+                    <h2 class="element__title">Домбай</h2>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"
+                            alt="Лайк"></button>
+                </div>
             </article>
             <!--Закрывает element-->
 
             <article class="element">
-                <img class="element__image" src="./image/karachaevks.jpg">
+                <img class="element__image" src="./image/karachaevks.jpg" alt="Природа Карачаевска">
                 <div class="element__bottom">
-                    <p class="element__title">Карачаевск</p>
-                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"></button>
+                    <h2 class="element__title">Карачаевск</h2>
+                    <button class="element__button-like"><img class="element__like" src="./image/like.svg"
+                            alt="Лайк"></button>
+                </div>
             </article>
             <!--Закрывает element-->
 
@@ -102,25 +113,16 @@
             <div class="popup__container">
                 <form class="popup__form">
                     <h2 class="popup__title">Редактировать профиль</h2>
-
-
                     <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input-name">
-                    <img src="./image/Line.svg" class="popup_line">
-
-
+                    <img src="./image/Line.svg" class="popup_line" alt="Линия полей ввода">
                     <input type="text" placeholder="Исследователь океана" class="popup__input popup__input-job">
-                    <img src="./image/Line.svg" class="popup_line">
-
-
+                    <img src="./image/Line.svg" class="popup_line" alt="Линия полей ввода">
                     <button class="popup__submit" type="submit">
-                        <p class="popup__save">Сохранить</p>
+                        <span class="popup__save">Сохранить</span>
                     </button>
-
-                    <button class="popup__close-button"><img src="./image/Close Icon.svg"></button>
+                    <button class="popup__close-button"><img src="./image/Close_Icon.svg"
+                            alt="Кнопка закрытия окна редактирования профиля"></button>
                 </form>
-
-
-
             </div>
         </div>
     </section>

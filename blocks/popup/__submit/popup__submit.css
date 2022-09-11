@@ -5,10 +5,11 @@
     margin-top: 38px;
     border-radius: 2px;
     margin-bottom: 37px;
-    border-style: none
+    border-style: none;
+    height: 50px;
 }
 
-.popup__submit:hover{
+.popup__submit:hover {
     opacity: 0.8;
 
 }
@@ -18,5 +19,6 @@
         width: 238px;
         margin-bottom: 25px;
         margin-top: 45px;
+        height: 46px;
     }
 }
