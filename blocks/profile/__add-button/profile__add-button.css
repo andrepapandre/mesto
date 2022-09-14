@@ -6,6 +6,10 @@
     background-color: black;
     margin-top: auto;
     margin-bottom: auto;
+    cursor: pointer;
+    background-position: center;
+    background-image: url(../../../image/add-button.svg);
+    background-repeat: no-repeat;
 }
 
 .profile__add-button:hover {
@@ -15,6 +19,6 @@
 
 @media screen and (max-width: 820px) {
     .profile__add-button {
- min-width: 282px;
+        min-width: 282px;
     }
 }

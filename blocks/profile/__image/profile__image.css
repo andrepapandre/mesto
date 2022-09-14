@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 820px) {
-    .profile__image{
+    .profile__image {
         margin-top: 0;
         margin-bottom: 26px;
         margin-left: auto;

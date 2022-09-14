@@ -3,7 +3,17 @@
     border: 0px;
     margin-left: 20px;
     margin-right: 5px;
-
+    cursor: pointer;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+    align-items: center;
+    width: 23px;
+    height: 20px;
+    background-image: url(../../../image/like.svg);
+    background-repeat: no-repeat;
 }
 
 .element__like:hover {

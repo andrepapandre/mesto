@@ -1,6 +1,4 @@
 .popup__save {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
@@ -10,4 +8,3 @@
     margin-bottom: 18px;
     align-self: center;
 }
-
