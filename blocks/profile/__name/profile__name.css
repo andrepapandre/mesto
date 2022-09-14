@@ -6,7 +6,6 @@
     color: white;
     margin: 0;
     justify-self: left;
-    grid-area: "profile__name";
 }
 
 @media screen and (max-width: 1038px) {
