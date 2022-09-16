@@ -1,7 +1,3 @@
 .popup_opened {
     display: flex;
-    padding-top: 195px;
-    justify-content: center;
-    align-items: flex-start;
-
 }

@@ -7,8 +7,9 @@
     color: #000000;
     align-self: center;
     border: 0;
-    margin-bottom: 13px;
     outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 13px;
 }
 
 .popup__input:last-of-type {
