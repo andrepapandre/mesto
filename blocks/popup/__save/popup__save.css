@@ -8,3 +8,11 @@
     margin-bottom: 18px;
     align-self: center;
 }
+
+@media screen and (max-width: 528px) {
+    .popup__save {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+}
