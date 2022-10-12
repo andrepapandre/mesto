@@ -7,5 +7,48 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width:  210px;
+    max-width: 190px;
+}
+
+@media screen and (max-width: 1240px) {
+    .element__title {
+        max-width: 160px;
+
+    }
+
+}
+
+@media screen and (max-width: 1090px) {
+    .element__title {
+        max-width: 140px;
+
+    }
+
+}
+
+@media screen and (max-width: 1063px) {
+    .element__title {
+        max-width: 190px;
+
+
+    }
+
+}
+
+@media screen and (max-width: 920px) {
+    .element__title {
+        max-width: 140px;
+        font-size: 20px;
+
+
+    }
+
+}
+
+@media screen and (max-width: 826px) {
+    .element__title {
+        font-size: 24px;
+        max-width: 190px;
+    }
+
 }
