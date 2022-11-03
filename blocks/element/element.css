@@ -6,4 +6,5 @@
     justify-content: flex-start;
     max-width: 282px;
     margin: 0;
+    position: relative;
 }
