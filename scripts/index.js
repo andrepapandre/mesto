@@ -94,9 +94,6 @@ const editFormSubmitHandler = (event) => {
 };
 formElementEdit.addEventListener('submit', editFormSubmitHandler);
 
-
-
-
 // add popups & functions & btns
 popupCardOpenBtn.addEventListener('click', () => {
     openPopup(popupAddCard);
@@ -105,13 +102,6 @@ popupCardOpenBtn.addEventListener('click', () => {
 popupAddCardCloseBtn.addEventListener('click', () => {
     closePopupWindow(popupAddCard);
 });
-
-
-
-// img popups & functions & btns
-
-
-
 
 // Cards render
 function createCard(element) {
@@ -132,8 +122,6 @@ function createCard(element) {
     likeItem(card);
     deleteItem(card);
     renderCard(card, container);
-
-
 };
 
 const formSubmitAdd = (event) => {
@@ -187,8 +175,10 @@ initialCards.forEach(createCard);
 //     const test = card.querySelector('.element__title').textContent;
 //     console.log(test);
 //     openPopup(popupImgShow); 
-//     removeImgWindow(); 
-// };
+//         popupImgShowCloseBtn.addEventListener('click', () => {
+//    closePopupWindow(popupImgShow);
+//      }); 
+//      };
 //
 
 
