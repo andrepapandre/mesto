@@ -38,8 +38,8 @@ const popupAddCardCloseBtn = popupAddCard.querySelector('.popup__close-button');
 const popupEditProfileCloseBtn = popupEditProfile.querySelector('.popup__close-button');
 const popupImgShowCloseBtn = popupImgShow.querySelector('.popup__close-img-button')
 const popupCardImgLoop = document.querySelector('.popup__image');
-const formElementEdit = document.querySelector('.popup__form_edit');
-const formElementAdd = document.querySelector('.popup__form_add');
+const formElementEdit = document.querySelector('.popup__form-edit');
+const formElementAdd = document.querySelector('.popup__form-add');
 const templateCard = document.querySelector('.template');
 const popupCardTextLoop = document.querySelector('.popup__name');
 
