@@ -1,74 +1,3 @@
-const formElement = document.querySelector('.popup__form');
-const nameInput = document.getElementById('popup__input-name');
-const jobInput = document.getElementById('popup__input-job');
-const namer = document.querySelector('.profile__name');
-const jober = document.querySelector('.profile__name-info');
-const editBtn = document.querySelector('.profile__edit-button');
-const addBtn = document.querySelector('.profile__add-btn');
-const editPopup = document.querySelector('.popup_edit');
-const addPopup = document.querySelector('.popup_add');
-const imgPopup = document.querySelector('.popup_image');
-const closeAddPopup = addPopup.querySelector('.popup__close-button');
-const closeEditPopup = editPopup.querySelector('.popup__close-button');
-const closeImgPopup = imgPopup.querySelector('.popup__close-img-button')
-const imgItem = document.querySelector('.popup__image');
-const container = document.querySelector('.elements');
-const addSubmitBtn = document.querySelector('.popup__form_add');
-const itemTemplate = document.querySelector('.template');
-const textImgItem = document.querySelector('.popup__name');
-
-// general functions
-const openPopup = (popup) => {
-    popup.classList.add('popup_opened');
-};
-
-const closePopupWindow = (popup) => {
-    popup.classList.remove('popup_opened');
-};
-
-const deleteHandler = (event) => {
-    const target = event.target;
-    const removeItem = target.closest('.element');
-    removeItem.remove();
-};
-
-const deleteItem = (el) => {
-    const deleteAddBtn = el.querySelector('.element__delete-btn');
-    deleteAddBtn.addEventListener('click', deleteHandler);
-};
-
-const likeHandler = (event) => {
-    const target = event.target;
-    target.classList.toggle('element__like_black');
-};
-
-const likeItem = (el) => {
-    const likeBtn = el.querySelector('.element__like');
-    likeBtn.addEventListener('click', likeHandler);
-};
-
-
-
-// edit popups & functions & btns
-editBtn.addEventListener('click', () => {
-    openPopup(editPopup);
-    nameInput.value = namer.textContent;
-    jobInput.value = jober.textContent;
-});
-
-closeEditPopup.addEventListener('click', () => {
-    closePopupWindow(editPopup);
-});
-
-const editFormSubmitHandler = (event) => {
-    event.preventDefault();
-    closePopupWindow(editPopup);
-    namer.textContent = nameInput.value;
-    jober.textContent = jobInput.value;
-};
-formElement.addEventListener('submit', editFormSubmitHandler);
-
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -96,82 +25,171 @@ const initialCards = [
     }
 ];
 
-// add popups & functions & btns
-addBtn.addEventListener('click', () => {
-    openPopup(addPopup);
-});
+const nameInput = document.getElementById('popup__input-name');
+const jobInput = document.getElementById('popup__input-job');
+const namer = document.querySelector('.profile__name');
+const jober = document.querySelector('.profile__name-info');
+const popupProfileOpenBtn = document.querySelector('.profile__edit-button');
+const popupCardOpenBtn = document.querySelector('.profile__add-btn');
+const popupEditProfile = document.querySelector('.popup_edit');
+const popupAddCard = document.querySelector('.popup_add');
+const popupImgShow = document.querySelector('.popup_image');
+const popupAddCardCloseBtn = popupAddCard.querySelector('.popup__close-button');
+const popupEditProfileCloseBtn = popupEditProfile.querySelector('.popup__close-button');
+const popupImgShowCloseBtn = popupImgShow.querySelector('.popup__close-img-button')
+const popupCardImgLoop = document.querySelector('.popup__image');
+const formElementEdit = document.querySelector('.popup__form_edit');
+const formElementAdd = document.querySelector('.popup__form_add');
+const templateCard = document.querySelector('.template');
+const popupCardTextLoop = document.querySelector('.popup__name');
 
-closeAddPopup.addEventListener('click', () => {
-    closePopupWindow(addPopup);
-});
-
-const formSubmitAdd = (event) => {
-    event.preventDefault();
-    const item = document.getElementById('popup__input-title').value;
-    const link = document.getElementById('popup__input-link').value;
-    if (item.length === 0 || link.length === 0) {
-        alert('Введите название или ссылку');
-    }
-    else {
-        renderItem(item, link);
-    };
-    closePopupWindow(addPopup);
-    event.target.reset();
+// general functions
+const openPopup = (popup) => {
+    popup.classList.add('popup_opened');
 };
-addSubmitBtn.addEventListener('submit', formSubmitAdd);
 
+const closePopupWindow = (popup) => {
+    popup.classList.remove('popup_opened');
+};
+
+const deleteHandler = (event) => {
+    const target = event.target;
+    const removeItem = target.closest('.element');
+    removeItem.remove();
+};
+
+const deleteItem = (el) => {
+    const deleteAddBtn = el.querySelector('.element__delete-btn');
+    deleteAddBtn.addEventListener('click', deleteHandler);
+};
+
+const likeHandler = (event) => {
+    const target = event.target;
+    target.classList.toggle('element__like_black');
+};
+
+const likeItem = (card) => {
+    const likeBtn = card.querySelector('.element__like');
+    likeBtn.addEventListener('click', likeHandler);
+};
+
+
+
+// edit popups & functions & btns
+popupProfileOpenBtn.addEventListener('click', () => {
+    openPopup(popupEditProfile);
+    nameInput.value = namer.textContent;
+    jobInput.value = jober.textContent;
+});
+
+popupEditProfileCloseBtn.addEventListener('click', () => {
+    closePopupWindow(popupEditProfile);
+});
+
+const editFormSubmitHandler = (event) => {
+    event.preventDefault();
+    closePopupWindow(popupEditProfile);
+    namer.textContent = nameInput.value;
+    jober.textContent = jobInput.value;
+};
+formElementEdit.addEventListener('submit', editFormSubmitHandler);
+
+
+
+
+// add popups & functions & btns
+popupCardOpenBtn.addEventListener('click', () => {
+    openPopup(popupAddCard);
+});
+
+popupAddCardCloseBtn.addEventListener('click', () => {
+    closePopupWindow(popupAddCard);
+});
 
 
 
 // img popups & functions & btns
-const removeImgWindow = () => {
-    closeImgPopup.addEventListener('click', () => {
-        closePopupWindow(imgPopup);
-    });
-};
 
 
 
 
 // Cards render
-const getItemArray = (element) => {
-    const el = itemTemplate.content.cloneNode(true).children[0];
-    el.querySelector('.element__title').textContent = element.name;
-    el.querySelector('.element__image').src = element.link;
-    el.querySelector('.element__image').alt = element.name;
-    container.prepend(el);
-    likeItem(el);
-    deleteItem(el);
-    const imageBtn = el.querySelector('.element__image');
-    imageBtn.addEventListener('click', () => {
-        imgItem.src = element.link;
-        textImgItem.textContent = element.name;
-        openPopup(imgPopup);
-        removeImgWindow();
-    });
+function createCard(element) {
+    const container = document.querySelector('.elements');
+    const card = templateCard.content.cloneNode(true).children[0];
+    card.querySelector('.element__title').textContent = element.name;
+    card.querySelector('.element__image').src = element.link;
+    card.querySelector('.element__image').alt = element.name;
+    const imageBtn = card.querySelector('.element__image');
+    imageBtn.addEventListener('click', () => { 
+        popupCardImgLoop.src = element.link; 
+        popupCardTextLoop.textContent = element.name; 
+        openPopup(popupImgShow); 
+        popupImgShowCloseBtn.addEventListener('click', () => {
+            closePopupWindow(popupImgShow);
+        });    
+    }); 
+    likeItem(card);
+    deleteItem(card);
+    renderCard(card, container);
+
+
 };
 
-
-const renderItem = (text, link) => {
-    const el = itemTemplate.content.cloneNode(true).children[0];
-    el.querySelector('.element__title').textContent = text;
-    el.querySelector('.element__image').src = link;
-    el.querySelector('.element__image').alt = text;
-    likeItem(el);
-    deleteItem(el);
-    container.prepend(el);
-    const imageBtn = el.querySelector('.element__image');
-    imageBtn.addEventListener('click', () => {
-        imgItem.src = link;
-        textImgItem.textContent = text;
-        openPopup(imgPopup);
-        removeImgWindow();
-    });
+const formSubmitAdd = (event) => {
+    event.preventDefault();
+    const container = document.querySelector('.elements');
+    const card = templateCard.content.cloneNode(true).children[0];
+    card.querySelector('.element__title').textContent = document.getElementById('popup__input-title').value;
+    card.querySelector('.element__image').src = document.getElementById('popup__input-link').value;
+    const imageBtn = card.querySelector('.element__image');
+    imageBtn.addEventListener('click', () => { 
+        popupCardImgLoop.src = card.querySelector('.element__image').src; 
+        popupCardTextLoop.textContent = card.querySelector('.element__title').textContent; 
+        openPopup(popupImgShow); 
+        popupImgShowCloseBtn.addEventListener('click', () => {
+            closePopupWindow(popupImgShow);
+        });
+        }); 
+    deleteItem(card);
+    likeItem(card);
+    renderCard(card, container)
+    closePopupWindow(popupAddCard);
+    event.target.reset();
 };
 
+formElementAdd.addEventListener('submit', formSubmitAdd);
 
-// load from array
+function renderCard(card, container) {
+    container.prepend(card);
+};
+
+initialCards.forEach(createCard);
 
 
-initialCards.forEach(getItemArray);
+
+
+
+
+// Приветствую! Очень долго пытался сделать один вызов попапа (увеличение картинки) для createCard и formSubmitAdd
+// Но не смог, не получилось найти через target текстовое содержимое картинки, а картинку получил через target.src
+// Буду рад, если дадите пару советов, как это можно сделать) Спасибо))
+
+// const imageItem = (card) => {
+//     const imageBtn = card.querySelector('.element__image');
+//     imageBtn.addEventListener('click', imageHandler)
+// };
+
+    
+// const imageHandler = (event) => {
+//     const target = event.target;
+//     popupCardImgLoop.src = target.src
+//     const test = card.querySelector('.element__title').textContent;
+//     console.log(test);
+//     openPopup(popupImgShow); 
+//     removeImgWindow(); 
+// };
+//
+
+
 

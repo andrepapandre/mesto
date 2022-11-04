@@ -49,7 +49,7 @@
 
     <div class="popup popup_edit">
         <div class="popup__container">
-            <form name="popupForm" method="post" class="popup__form">
+            <form name="popupFormEdit" method="post" class="popup__form_edit">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input type="text" placeholder="Имя" name="flname" class="popup__input" id="popup__input-name">
                 <input type="text" placeholder="О себе" name="about" class="popup__input" id="popup__input-job">
@@ -63,7 +63,7 @@
 
     <div class="popup popup_add">
         <div class="popup__container">
-            <form name="popupForm" method="post" class="popup__form popup__form_add">
+            <form name="popupFormAdd" method="post" class="popup__form popup__form_add">
                 <h2 class="popup__title">Новое место</h2>
                 <input type="text" placeholder="Название" name="title" class="popup__input" id="popup__input-title">
                 <input type="src" placeholder="Ссылка на картинку" name="link" class="popup__input"
@@ -90,7 +90,7 @@
             <img class="element__image" type="src">
             <button type="button" class="element__delete-btn"></button>
             <div class="element__bottom">
-                <h2 type="text" class="element__title"></h2>
+                <h2 type="text" class="element__title" id="kokoko"></h2>
                 <button type="button" class="element__like" id="like"></button>
             </div>
         </article>

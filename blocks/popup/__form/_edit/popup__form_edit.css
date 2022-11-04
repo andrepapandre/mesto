@@ -1,4 +1,4 @@
-.popup__form_add{
+.popup__form_edit{
     display: flex;
     flex-direction: column;
-}
+};
