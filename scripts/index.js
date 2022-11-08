@@ -1,4 +1,4 @@
-const initialCards = [
+const cardsArray = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -42,6 +42,12 @@ const formElementEdit = document.querySelector('.popup__form-edit');
 const formElementAdd = document.querySelector('.popup__form-add');
 const templateCard = document.querySelector('.template');
 const popupCardTextLoop = document.querySelector('.popup__name');
+const container = document.querySelector('.elements');
+const inputLink = document.getElementById('popup__input-link');
+const inputName = document.getElementById('popup__input-title');
+
+
+
 
 // general functions
 const openPopup = (popup) => {
@@ -103,83 +109,58 @@ popupAddCardCloseBtn.addEventListener('click', () => {
     closePopupWindow(popupAddCard);
 });
 
+
+// img 
+popupImgShowCloseBtn.addEventListener('click', () => {
+    closePopupWindow(popupImgShow);
+});
+
+
 // Cards render
-function createCard(element) {
-    const container = document.querySelector('.elements');
+
+
+const renderCard = (container, cards) => {
+    container.prepend(cards);
+};
+
+const createCard = (item) => {
     const card = templateCard.content.cloneNode(true).children[0];
-    card.querySelector('.element__title').textContent = element.name;
-    card.querySelector('.element__image').src = element.link;
-    card.querySelector('.element__image').alt = element.name;
+    card.querySelector('.element__title').textContent = item.name;
+    card.querySelector('.element__image').src = item.link;
     const imageBtn = card.querySelector('.element__image');
-    imageBtn.addEventListener('click', () => { 
-        popupCardImgLoop.src = element.link; 
-        popupCardTextLoop.textContent = element.name; 
-        openPopup(popupImgShow); 
-        popupImgShowCloseBtn.addEventListener('click', () => {
-            closePopupWindow(popupImgShow);
-        });    
-    }); 
+    imageBtn.addEventListener('click', () => {
+        popupCardImgLoop.src = card.querySelector('.element__image').src;
+        popupCardTextLoop.textContent = card.querySelector('.element__title').textContent;
+        popupCardImgLoop.alt = popupCardTextLoop.textContent;
+        openPopup(popupImgShow);
+    });
     likeItem(card);
     deleteItem(card);
-    renderCard(card, container);
+    return card;
 };
+
 
 const formSubmitAdd = (event) => {
     event.preventDefault();
-    const container = document.querySelector('.elements');
-    const card = templateCard.content.cloneNode(true).children[0];
-    card.querySelector('.element__title').textContent = document.getElementById('popup__input-title').value;
-    card.querySelector('.element__image').src = document.getElementById('popup__input-link').value;
-    const imageBtn = card.querySelector('.element__image');
-    imageBtn.addEventListener('click', () => { 
-        popupCardImgLoop.src = card.querySelector('.element__image').src; 
-        popupCardTextLoop.textContent = card.querySelector('.element__title').textContent; 
-        openPopup(popupImgShow); 
-        popupImgShowCloseBtn.addEventListener('click', () => {
-            closePopupWindow(popupImgShow);
-        });
-        }); 
-    deleteItem(card);
-    likeItem(card);
-    renderCard(card, container)
+    const data = { name: inputName.value, link: inputLink.value}
+    const cards = createCard(data);
+    renderCard(container, cards);
     closePopupWindow(popupAddCard);
     event.target.reset();
 };
 
 formElementAdd.addEventListener('submit', formSubmitAdd);
 
-function renderCard(card, container) {
-    container.prepend(card);
-};
-
-initialCards.forEach(createCard);
 
 
 
 
 
+cardsArray.forEach((item) => {
+    const cards = createCard(item);
+    renderCard(container, cards);
 
-// Приветствую! Очень долго пытался сделать один вызов попапа (увеличение картинки) для createCard и formSubmitAdd
-// Но не смог, не получилось найти через target текстовое содержимое картинки, а картинку получил через target.src
-// Буду рад, если дадите пару советов, как это можно сделать) Спасибо))
 
-// const imageItem = (card) => {
-//     const imageBtn = card.querySelector('.element__image');
-//     imageBtn.addEventListener('click', imageHandler)
-// };
-
-    
-// const imageHandler = (event) => {
-//     const target = event.target;
-//     popupCardImgLoop.src = target.src
-//     const test = card.querySelector('.element__title').textContent;
-//     console.log(test);
-//     openPopup(popupImgShow); 
-//         popupImgShowCloseBtn.addEventListener('click', () => {
-//    closePopupWindow(popupImgShow);
-//      }); 
-//      };
-//
-
+})
 
 
