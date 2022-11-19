@@ -48,32 +48,57 @@
 
 
     <div class="popup popup_edit">
-        <div class="popup__container">
+        <section class="popup__container">
             <form name="popupFormEdit" method="post" class="popup__form popup__form-edit">
+
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" placeholder="Имя" name="flname" class="popup__input" id="popup__input-name">
-                <input type="text" placeholder="О себе" name="about" class="popup__input" id="popup__input-job">
+
+                <section class="popup__section">
+                <input type="text" placeholder="Имя" name="editName" class="popup__input" id="popup__input-name"
+                    required minlength="2" maxlength="40">
+                <span class="popup__input-error" id="title-name-error"></span>
+                </section>
+
+                <section class="popup__section">
+
+                <input type="text" placeholder="О себе" name="editAbout" class="popup__input" id="popup__input-job"
+                    required minlength="2" maxlength="200">
+                <span class="popup__input-error" id="job-name-error"></span>
+                </section>
                 <button class="popup__submit" type="submit">
                     <span class="popup__save">Сохранить</span>
                 </button>
+
             </form>
             <button type="button" class="popup__close-button"></button>
-        </div>
+        </section>
     </div>
 
     <div class="popup popup_add">
-        <div class="popup__container">
+        <section class="popup__container">
             <form name="popupFormAdd" method="post" class="popup__form popup__form-add">
                 <h2 class="popup__title">Новое место</h2>
-                <input type="text" placeholder="Название" name="title" class="popup__input" id="popup__input-title">
-                <input type="src" placeholder="Ссылка на картинку" name="link" class="popup__input"
-                    id="popup__input-link">
+
+                <section class="popup__section">
+
+                <input type="text" placeholder="Название" name="title" class="popup__input" id="popup__input-title"
+                    required minlength="2" maxlength="40">
+                <span class="popup__input-error" id="title-name-error"></span>
+                </section>
+
+                <section class="popup__section">
+
+                <input type="url" placeholder="Ссылка на картинку" name="link" class="popup__input"
+                    id="popup__input-link" required minlength="2" maxlength="200">
+                <span class="popup__input-error" id="title-name-error"></span>
+
+                </section>
                 <button class="popup__submit" id="addSubmit" type="submit">
                     <span class="popup__save">Создать</span>
                 </button>
             </form>
             <button type="button" class="popup__close-button"></button>
-        </div>
+        </section>
     </div>
 
     <div class="popup popup_image">

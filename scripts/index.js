@@ -45,8 +45,7 @@ const popupCardTextLoop = document.querySelector('.popup__name');
 const container = document.querySelector('.elements');
 const inputLink = document.getElementById('popup__input-link');
 const inputName = document.getElementById('popup__input-title');
-
-
+const page = document.querySelector('page');
 
 
 // general functions
@@ -54,8 +53,10 @@ const openPopup = (popup) => {
     popup.classList.add('popup_opened');
 };
 
+
 const closePopupWindow = (popup) => {
     popup.classList.remove('popup_opened');
+
 };
 
 const deleteHandler = (event) => {
@@ -79,17 +80,36 @@ const likeItem = (card) => {
     likeBtn.addEventListener('click', likeHandler);
 };
 
-
+const escHandler = (evt) => {
+    if(evt.keyCode === 27){
+        closePopupWindow(popupAddCard);
+        closePopupWindow(popupEditProfile)
+    }
+};
 
 // edit popups & functions & btns
-popupProfileOpenBtn.addEventListener('click', () => {
+popupEditProfile.addEventListener('click', (evt) => {
+    const click = evt.composedPath();
+    if (!click.includes(formElementEdit)) {
+        closePopupWindow(popupEditProfile);
+
+    }
+});
+
+
+popupProfileOpenBtn.addEventListener('click', (evt) => {
+
     openPopup(popupEditProfile);
+
+    console.log(evt.target)
     nameInput.value = namer.textContent;
     jobInput.value = jober.textContent;
 });
 
 popupEditProfileCloseBtn.addEventListener('click', () => {
     closePopupWindow(popupEditProfile);
+
+
 });
 
 const editFormSubmitHandler = (event) => {
@@ -98,7 +118,11 @@ const editFormSubmitHandler = (event) => {
     namer.textContent = nameInput.value;
     jober.textContent = jobInput.value;
 };
+
+popupProfileOpenBtn.addEventListener('keyup', escHandler)
+
 formElementEdit.addEventListener('submit', editFormSubmitHandler);
+
 
 // add popups & functions & btns
 popupCardOpenBtn.addEventListener('click', () => {
@@ -109,16 +133,24 @@ popupAddCardCloseBtn.addEventListener('click', () => {
     closePopupWindow(popupAddCard);
 });
 
+popupAddCard.addEventListener('click', (evt) => {
+    const click = evt.composedPath();
+    if (!click.includes(formElementAdd)) {
+        closePopupWindow(popupAddCard);
 
-// img 
+    }
+});
+
+popupCardOpenBtn.addEventListener('keyup', escHandler)
+
+
+// img Listener
 popupImgShowCloseBtn.addEventListener('click', () => {
     closePopupWindow(popupImgShow);
 });
 
 
 // Cards render
-
-
 const renderCard = (container, cards) => {
     container.prepend(cards);
 };
@@ -139,10 +171,9 @@ const createCard = (item) => {
     return card;
 };
 
-
 const formSubmitAdd = (event) => {
     event.preventDefault();
-    const data = { name: inputName.value, link: inputLink.value}
+    const data = { name: inputName.value, link: inputLink.value }
     const cards = createCard(data);
     renderCard(container, cards);
     closePopupWindow(popupAddCard);
@@ -151,16 +182,90 @@ const formSubmitAdd = (event) => {
 
 formElementAdd.addEventListener('submit', formSubmitAdd);
 
-
-
-
-
-
 cardsArray.forEach((item) => {
     const cards = createCard(item);
     renderCard(container, cards);
-
-
 })
 
 
+
+
+
+
+
+
+const checkInputValidity = (inputElement) => {
+    const isValid = inputElement.validity.valid;
+
+    const formSection = inputElement.closest('.popup__section');
+    const errorElement = formSection.querySelector('.popup__input-error');
+
+    if (isValid) {
+        hideInputError(errorElement)
+    } else {
+        showInputError(errorElement, inputElement.validationMessage)
+    }
+}
+
+const showInputError = (errorElement, errorMessage) => {
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add("popup__input-error_inactive");
+}
+
+const hideInputError = (errorElement) => {
+    errorElement.textContent = '';
+    errorElement.classList.remove("popup__input-error_inactive");
+}
+
+
+
+
+const toggleButtonState = (inputList, buttonElement) => {
+    const hasNotValidInput = inputList.some(inputElement => !inputElement.validity.valid);
+
+    if (hasNotValidInput) {
+        buttonElement.setAttribute("disabled", true);
+        buttonElement.firstElementChild.style.color = "black";
+
+        buttonElement.classList.add("popup__submit_inactive")
+    } else {
+        buttonElement.removeAttribute("disabled");
+        buttonElement.firstElementChild.style.color = "white";
+        buttonElement.classList.remove("popup__submit_inactive");
+    }
+};
+
+
+
+const setEventListeners = (formElement) => {
+
+    formElement.addEventListener('submit', (event) => {
+        event.preventDefault();
+    })
+
+    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+    const submitButton = formElement.querySelector('.popup__submit');
+
+    toggleButtonState(inputList, submitButton);
+
+    inputList.forEach(inputElement => {
+        inputElement.addEventListener('input', () => {
+            checkInputValidity(inputElement);
+            toggleButtonState(inputList, submitButton)
+        })
+    })
+}
+
+
+
+const enableValidation = () => {
+
+    const formList = document.querySelectorAll('.popup__form');
+
+    formList.forEach((formElement) => {
+        setEventListeners(formElement);
+    })
+
+}
+
+enableValidation();
