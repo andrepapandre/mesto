@@ -17,33 +17,32 @@ const container = document.querySelector('.elements');
 const inputLink = document.getElementById('popup__input-link');
 const inputName = document.getElementById('popup__input-title');
 const page = document.querySelector('.page');
-
+const pictureForPopup = document.querySelector('.popup__image');
+const nameForPopup = document.querySelector('.popup__name');
 
 // general functions
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
-    page.addEventListener('keyup', escHandler);
-    popup.addEventListener('click', handleCloseByOverlay);
+    page.addEventListener('keyup', handleEsc);
 
 
 };
 
 const closePopupWindow = (popup) => {
     popup.classList.remove('popup_opened');
-    page.removeEventListener('keyup', escHandler);
-    popup.removeEventListener('click', handleCloseByOverlay);
+    page.removeEventListener('keyup', handleEsc);
 
 };
 
-const basketHandler = (event) => {
+const handleDeleteCard = (event) => {
     const target = event.target;
     const itemRemove = target.closest('.element');
     itemRemove.remove();
 };
 
-const bascketListener = (el) => {
+const setBascketListener = (el) => {
     const addBtnDelete = el.querySelector('.element__delete-btn');
-    addBtnDelete.addEventListener('click', basketHandler);
+    addBtnDelete.addEventListener('click', handleDeleteCard);
 };
 
 const likeHandler = (event) => {
@@ -56,7 +55,7 @@ const likeListener = (card) => {
     likeBtn.addEventListener('click', likeHandler);
 };
 
-const escHandler = (evt) => {
+const handleEsc = (evt) => {
     if (evt.keyCode === 27) {
         const popup = document.querySelectorAll('.popup');
         popup.forEach((popupEl) => {
@@ -77,6 +76,8 @@ popupProfileOpenBtn.addEventListener('click', () => {
     nameInput.value = namer.textContent;
     jobInput.value = jober.textContent;
     openPopup(popupEditProfile);
+    popupEditProfile.addEventListener('click', handleCloseByOverlay);
+
 });
 
 popupEditProfileCloseBtn.addEventListener('click', () => {
@@ -96,14 +97,12 @@ formElementEdit.addEventListener('submit', editFormSubmitHandler);
 // add popups & functions & btns
 popupCardOpenBtn.addEventListener('click', () => {
     openPopup(popupAddCard);
-    page.addEventListener('keyup', escHandler);
+    popupEditProfile.addEventListener('click', handleCloseByOverlay);
 
 });
 
 popupAddCardCloseBtn.addEventListener('click', () => {
     closePopupWindow(popupAddCard);
-    page.removeEventListener('keyup', escHandler);
-
 });
 
 popupAddCard.addEventListener('click', (evt) => {
@@ -133,19 +132,24 @@ const renderCard = (container, cards) => {
 const createCard = (item) => {
     const card = templateCard.content.cloneNode(true).children[0];
     card.querySelector('.element__title').textContent = item.name;
-    card.querySelector('.element__image').src = item.link;
-    item.name = item.alt;
     const imageBtn = card.querySelector('.element__image');
     imageBtn.addEventListener('click', () => {
-        document.querySelector('.popup__image').src = card.querySelector('.element__image').src;
-        document.querySelector('.popup__name').textContent = card.querySelector('.element__title').textContent;
-        document.querySelector('.popup__image').alt = document.querySelector('.popup__name').textContent;
+        pictureForPopup.src = card.querySelector('.element__image').src;
+        nameForPopup.textContent = card.querySelector('.element__title').textContent;
+        pictureForPopup.alt = nameForPopup.textContent;
+        popupImgShow.addEventListener('click', handleCloseByOverlay);
         openPopup(popupImgShow);
+
+
     });
+
+    imageBtn.alt = item.name;
+    imageBtn.src = item.link;
     likeListener(card);
-    bascketListener(card);
+    setBascketListener(card);
     return card;
 };
+
 
 const handleSubmitAdd = (event) => {
     event.preventDefault();
@@ -163,6 +167,7 @@ formElementAdd.addEventListener('submit', handleSubmitAdd);
 cardsArray.forEach((item) => {
     const card = createCard(item);
     renderCard(container, card);
-})
+});
 
+enableValidation(selectors);
 
