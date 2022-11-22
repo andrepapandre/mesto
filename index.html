@@ -49,7 +49,7 @@
 
     <div class="popup popup_edit">
         <section class="popup__container">
-            <form name="popupFormEdit" method="post" class="popup__form popup__form-edit">
+            <form name="popupFormEdit" method="post" class="popup__form popup__form-edit" novalidate>
 
                 <h2 class="popup__title">Редактировать профиль</h2>
 
@@ -76,7 +76,7 @@
 
     <div class="popup popup_add">
         <section class="popup__container">
-            <form name="popupFormAdd" method="post" class="popup__form popup__form-add">
+            <form name="popupFormAdd" method="post" class="popup__form popup__form-add" novalidate >
                 <h2 class="popup__title">Новое место</h2>
 
                 <section class="popup__section">
@@ -112,7 +112,7 @@
 
     <template class="template">
         <article class="element">
-            <img class="element__image" type="src">
+           <img class="element__image" type="src">
             <button type="button" class="element__delete-btn"></button>
             <div class="element__bottom">
                 <h2 type="text" class="element__title" id="kokoko"></h2>
@@ -120,8 +120,9 @@
             </div>
         </article>
     </template>
-
+    <script src="./scripts/card.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

@@ -3,16 +3,10 @@
     font-size: 18px;
     line-height: 22px;
     text-align: center;
-    color: black;
+    color: white;
     margin-top: 14px;
     margin-bottom: 18px;
     align-self: center;
-}
-
-
-.popup__save:enabled{
-    color: white;
-
 }
 
 
