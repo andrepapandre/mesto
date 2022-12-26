@@ -21,13 +21,13 @@
         <div class="profile__item">
           <img
             class="profile__image"
-            src="./image/avatar.jpg"
+            src="./image/avatar-bro.jpg"
             alt="Аватар профиля"
           />
           <div class="profile__cards">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name">Andre Kiss</h1>
             <button type="button" class="profile__edit-button"></button>
-            <p class="profile__name-info">Исследователь океана</p>
+            <p class="profile__name-info">Web-frontend developer</p>
           </div>
           <!--Закрывает profile-info-->
         </div>
@@ -46,6 +46,7 @@
     <div class="popup popup_edit">
       <section class="popup__container">
         <form
+          id="popupFormEdit"
           name="popupFormEdit"
           method="post"
           class="popup__form popup__form-edit"
@@ -91,6 +92,7 @@
     <div class="popup popup_add">
       <section class="popup__container">
         <form
+          id="popupFormAdd"
           name="popupFormAdd"
           method="post"
           class="popup__form popup__form-add"
@@ -125,7 +127,7 @@
             />
             <span class="popup__input-error" id="link-name-error"></span>
           </section>
-          <button class="popup__submit" id="addSubmit" type="submit">
+          <button class="popup__submit popupSet" id="addSubmit" type="submit">
             <span class="popup__save">Создать</span>
           </button>
         </form>
@@ -155,6 +157,5 @@
     <script type="module" src="./scripts/Card.js"></script>
     <script type="module" src="./scripts/FormValidator.js"></script>
     <script type="module" src="./scripts/index.js"></script>
-
   </body>
 </html>

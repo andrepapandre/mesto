@@ -1,6 +1,5 @@
-import { Card, cardsArray } from './Card.js';
-import { FormValidator, selectors} from './FormValidator.js'
-
+import { Card, cardsArray } from "./Card.js";
+import { FormValidator, selectors } from "./FormValidator.js";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // global scope
@@ -29,6 +28,7 @@ const inputName = document.getElementById("popup__input-title");
 const pictureForPopup = document.querySelector(".popup__image");
 const nameForPopup = document.querySelector(".popup__name");
 const page = document.querySelector(".page");
+const popups = document.querySelectorAll(".popup");
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // general functions
@@ -42,39 +42,37 @@ const closePopupWindow = (popup) => {
   page.removeEventListener("keyup", handleEsc);
 };
 
-const handleDeleteCard = (event) => {
-  const target = event.target;
-  const itemRemove = target.closest(".element");
-  itemRemove.remove();
-};
-
-const setBascketListener = (el) => {
-  const addBtnDelete = el.querySelector(".element__delete-btn");
-  addBtnDelete.addEventListener("click", handleDeleteCard);
-};
-
-const handleCloseByOverlay = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closePopupWindow(popupImgShow);
-  }
-};
-
 const handleEsc = (evt) => {
-  if (evt.keyCode === 27) {
-    const popup = document.querySelectorAll(".popup");
-    popup.forEach((popupEl) => {
+  if (evt.key === "Escape") {
+    popups.forEach((popupEl) => {
       closePopupWindow(popupEl);
     });
   }
 };
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup__close-button")) {
+      closePopupWindow(popup);
+    }
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopupWindow(popup);
+    }
+  });
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // img popup: handlers
 popupImgShowCloseBtn.addEventListener("click", () => {
   closePopupWindow(popupImgShow);
 });
-popupImgShow.addEventListener("click", handleCloseByOverlay);
 
+function handleCardClick(name, link) {
+  this._pictureForPopup.src = link;
+  this._nameForPopup.textContent = name;
+  this._pictureForPopup.alt = this._nameForPopup.textContent;
+  openPopup(popupImgShow);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // edit popup: handlers and functions
 const editFormSubmitHandler = (event) => {
@@ -87,55 +85,56 @@ const editFormSubmitHandler = (event) => {
 popupProfileOpenBtn.addEventListener("click", () => {
   nameInput.value = namer.textContent;
   jobInput.value = jober.textContent;
+  validationforEditCard.resetValidation();
   openPopup(popupEditProfile);
 });
 
-popupEditProfileCloseBtn.addEventListener("click", () => {
-  closePopupWindow(popupEditProfile);
-});
-
-popupEditProfile.addEventListener("click", handleCloseByOverlay);
 formElementEdit.addEventListener("submit", editFormSubmitHandler);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // add popup: handlers and functions
 popupCardOpenBtn.addEventListener("click", () => {
+  validationforAddCard.resetValidation();
   openPopup(popupAddCard);
 });
 
-popupAddCardCloseBtn.addEventListener("click", () => {
-  closePopupWindow(popupAddCard);
-});
-
-popupAddCard.addEventListener("click", (evt) => {
-  const click = evt.composedPath();
-  if (!click.includes(formElementAdd)) {
-    closePopupWindow(popupAddCard);
-  }
-});
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Card.js submit and generation cards from array
+function createCard(item) {
+  const cardRender = new Card(
+    item,
+    templateCard,
+    handleCardClick,
+    pictureForPopup,
+    nameForPopup,
+    openPopup,
+    closePopupWindow
+  );
+  const carding = cardRender.generateCard();
+  container.prepend(carding);
+}
+
 const handleSubmitAdd = (event) => {
   event.preventDefault();
   const setCard = { link: inputLink.value, name: inputName.value };
-  const carding = new Card(setCard, templateCard, popupImgShow, pictureForPopup, nameForPopup, openPopup, closePopupWindow);
+  createCard(setCard);
   closePopupWindow(popupAddCard);
-  carding.generateCard(container);
-  event.submitter.classList.add("popup__submit_inactive");
-  event.submitter.setAttribute("disabled", true);
-  event.target.reset();
 };
 formElementAdd.addEventListener("submit", handleSubmitAdd);
 
 cardsArray.forEach((item) => {
-  const cardRender = new Card(item, templateCard, popupImgShow, pictureForPopup, nameForPopup, openPopup, closePopupWindow);
-  cardRender.generateCard(container);
+  createCard(item);
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // FormValidator.js validation enable
+const validationforAddCard = new FormValidator(selectors, formElementAdd);
+validationforAddCard.enableValidation();
 
-const enableValidation = new FormValidator(selectors);
-enableValidation.enableValidation();
+const validationforEditCard = new FormValidator(selectors, formElementAdd);
+validationforEditCard.enableValidation();
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////THAT'S ALL, WHAT I DO, BRO/////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
