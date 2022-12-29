@@ -35,8 +35,8 @@ export class FormValidator {
     errorElement.classList.remove(this._inputErrorIsActive);
   };
 
-  _toggleButtonState = (inputList, buttonElement) => {
-    const hasNotValidInput = inputList.some(
+  _toggleButtonState = (buttonElement) => {
+    const hasNotValidInput = this._inputList.some(
       (inputElement) => !inputElement.validity.valid
     );
 
@@ -59,16 +59,16 @@ export class FormValidator {
       event.target.reset();
 
     });
-    this.inputList = Array.from(formElement.querySelectorAll(this._formInput));
+    this._inputList = Array.from(formElement.querySelectorAll(this._formInput));
     const submitButton = formElement.querySelector(this._formSubmit);
     
 
-    this._toggleButtonState(this.inputList, submitButton);
+    this._toggleButtonState(submitButton);
 
-    this.inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(this.inputList, submitButton);
+        this._toggleButtonState(submitButton);
       });
     });
   };
@@ -76,9 +76,9 @@ export class FormValidator {
   resetValidation = () => {
     const submitButton = this._form.querySelector(this._formSubmit);
 
-    this._toggleButtonState(this.inputList, submitButton);
+    this._toggleButtonState(submitButton);
 
-    this.inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       const formSection = inputElement.closest(this._popupSection);
     const errorElement = formSection.querySelector(this._inputError);
       this._hideInputError(errorElement);
