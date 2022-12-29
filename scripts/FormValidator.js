@@ -59,27 +59,26 @@ export class FormValidator {
       event.target.reset();
 
     });
-    const inputList = Array.from(formElement.querySelectorAll(this._formInput));
+    this.inputList = Array.from(formElement.querySelectorAll(this._formInput));
     const submitButton = formElement.querySelector(this._formSubmit);
     
 
-    this._toggleButtonState(inputList, submitButton);
+    this._toggleButtonState(this.inputList, submitButton);
 
-    inputList.forEach((inputElement) => {
+    this.inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, submitButton);
+        this._toggleButtonState(this.inputList, submitButton);
       });
     });
   };
 
   resetValidation = () => {
-    const inputList = Array.from(this._form.querySelectorAll(this._formInput));
     const submitButton = this._form.querySelector(this._formSubmit);
 
-    this._toggleButtonState(inputList, submitButton);
+    this._toggleButtonState(this.inputList, submitButton);
 
-    inputList.forEach((inputElement) => {
+    this.inputList.forEach((inputElement) => {
       const formSection = inputElement.closest(this._popupSection);
     const errorElement = formSection.querySelector(this._inputError);
       this._hideInputError(errorElement);

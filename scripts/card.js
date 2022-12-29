@@ -33,7 +33,6 @@ export class Card {
     pictureForPopup,
     nameForPopup,
     openPopup,
-    closePopupWindow
   ) {
     this._templateCard = templateCard;
     this._link = item.link;
@@ -41,7 +40,6 @@ export class Card {
     this._pictureForPopup = pictureForPopup;
     this._nameForPopup = nameForPopup;
     this._openPopup = openPopup;
-    this._closePopupWindow = closePopupWindow;
     this._handleCardClick = handleCardClick;
   }
 
@@ -57,10 +55,6 @@ export class Card {
   _bucketHandler = () => {
     this._element.remove();
   };
-
-  _closePopupWindow() {
-    this._closePopupWindow(popupImgShow);
-  }
 
   _setEventListener() {
     this._likeButton.addEventListener("click", () => {

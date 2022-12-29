@@ -1,6 +1,7 @@
 import { Card, cardsArray } from "./Card.js";
 import { FormValidator, selectors } from "./FormValidator.js";
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // global scope
 const nameInput = document.getElementById("popup__input-name");
@@ -29,7 +30,6 @@ const pictureForPopup = document.querySelector(".popup__image");
 const nameForPopup = document.querySelector(".popup__name");
 const page = document.querySelector(".page");
 const popups = document.querySelectorAll(".popup");
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // general functions
 const openPopup = (popup) => {
@@ -63,9 +63,6 @@ popups.forEach((popup) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // img popup: handlers
-popupImgShowCloseBtn.addEventListener("click", () => {
-  closePopupWindow(popupImgShow);
-});
 
 function handleCardClick(name, link) {
   this._pictureForPopup.src = link;
@@ -100,7 +97,22 @@ popupCardOpenBtn.addEventListener("click", () => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Card.js submit and generation cards from array
+
 function createCard(item) {
+  const cardRender = new Card(
+  item,
+  templateCard,
+  handleCardClick,
+  pictureForPopup,
+  nameForPopup,
+  openPopup,
+  closePopupWindow
+);
+const cardElement = cardRender.generateCard();
+return cardElement
+}
+
+function renderCard(item) {
   const cardRender = new Card(
     item,
     templateCard,
@@ -117,13 +129,14 @@ function createCard(item) {
 const handleSubmitAdd = (event) => {
   event.preventDefault();
   const setCard = { link: inputLink.value, name: inputName.value };
-  createCard(setCard);
+  container.prepend(createCard(setCard));
   closePopupWindow(popupAddCard);
 };
 formElementAdd.addEventListener("submit", handleSubmitAdd);
 
 cardsArray.forEach((item) => {
-  createCard(item);
+  renderCard(item);
+  
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // FormValidator.js validation enable
