@@ -57,33 +57,25 @@ export class FormValidator {
       event.submitter.classList.add("popup__submit_inactive");
       event.submitter.setAttribute("disabled", true);
       event.target.reset();
-
     });
     this._inputList = Array.from(formElement.querySelectorAll(this._formInput));
-    const submitButton = formElement.querySelector(this._formSubmit);
-    
-
-    this._toggleButtonState(submitButton);
-
+    this.submitButton = formElement.querySelector(this._formSubmit);
+    this._toggleButtonState(this.submitButton);
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(submitButton);
+        this._toggleButtonState(this.submitButton);
       });
     });
   };
 
   resetValidation = () => {
-    const submitButton = this._form.querySelector(this._formSubmit);
-
-    this._toggleButtonState(submitButton);
-
+    this._toggleButtonState(this.submitButton);
     this._inputList.forEach((inputElement) => {
       const formSection = inputElement.closest(this._popupSection);
     const errorElement = formSection.querySelector(this._inputError);
       this._hideInputError(errorElement);
     });
-
   };
 
   enableValidation = () => {
