@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "### Project Mesto by Andrey Kiselev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrepapandre/mesto.git"
+  },
+  "author": "Andrey Kiselev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrepapandre/mesto/issues"
+  },
+  "homepage": "https://github.com/andrepapandre/mesto#readme"
+}
