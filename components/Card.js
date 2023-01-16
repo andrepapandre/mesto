@@ -1,14 +1,14 @@
 export const cardsArray = [
   {
-    name: ":)",
+    name: "говнокод :(g",
     link: "https://sun9-73.userapi.com/impg/_YoBTxB92NMr1IdSshxkRlLnn2wvRSlF9w12Vw/NOhZGBD4yXY.jpg?size=1904x2160&quality=95&sign=89abaa5af7e093d9934de4273a9871c5&type=album",
   },
   {
-    name: "Михаил",
+    name: "За",
     link: "https://sun9-71.userapi.com/impg/HyLqNDTSnYbnPlxl5vJnbml-4CkDwcELRgIeXg/k6GZFq9le8w.jpg?size=1440x1920&quality=96&sign=fbd8b02761e2b4d14a2238f0ee6d6976&type=album",
   },
   {
-    name: "Барсегян",
+    name: "Простите",
     link: "https://sun9-17.userapi.com/impg/09WUpzaX_zLhj_8l1wTXKBe-SZ_m8hc2eHzTCg/501hU48FAAA.jpg?size=1440x2160&quality=96&sign=f68ebcf000aa4ded60705e1ee56e075b&type=album",
   },
   {
