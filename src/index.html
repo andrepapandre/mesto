@@ -5,23 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место "Russia" - платформа для путешественников.</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
-
   <body class="page">
     <header class="header">
       <img
         class="header__logo"
-        src="./image/mesto__logo.svg"
-        alt="Логотип бренда Место"
+        src="<%=require('../image/mesto__logo.svg')%>"
       />
+      alt="Логотип бренда Место" />
     </header>
     <main class="container">
       <section class="profile">
         <div class="profile__item">
           <img
             class="profile__image"
-            src="./image/avatar-bro.jpg"
+            src="<%=require('../image/avatar-bro.jpg')%>"
             alt="Аватар профиля"
           />
           <div class="profile__cards">
@@ -153,9 +151,5 @@
         </div>
       </article>
     </template>
-
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
