@@ -10,6 +10,10 @@ export class FormValidator {
     this._inputError = selectors.inputError;
     this._inputErrorIsActive = selectors.inputErrorIsActive;
     this._form = form;
+    this._inputList = Array.from(this._form.querySelectorAll(this._formInput));
+    this.submitButton = this._form.querySelector(this._formSubmit);
+
+
   }
 
   _checkInputValidity = (inputElement) => {
@@ -58,8 +62,6 @@ export class FormValidator {
       event.submitter.setAttribute("disabled", true);
       event.target.reset();
     });
-    this._inputList = Array.from(formElement.querySelectorAll(this._formInput));
-    this.submitButton = formElement.querySelector(this._formSubmit);
     this._toggleButtonState(this.submitButton);
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {

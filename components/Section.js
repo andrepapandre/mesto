@@ -2,10 +2,10 @@ export class Section {
   constructor({ items, renderer }, templateSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._templateSelector = document.querySelector(templateSelector);
+    this._templateSelector = document.querySelector(`.${templateSelector}`);
   }
 
-  setItem(element) {
+  addItem(element) {
     this._templateSelector.append(element);
   }
 

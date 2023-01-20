@@ -29,17 +29,11 @@ export class Card {
   constructor(
     item,
     templateCard,
-    handleCardClick,
-    pictureForPopup,
-    nameForPopup,
-    openPopup,
+    handleCardClick
   ) {
     this._templateCard = templateCard;
     this._link = item.link;
     this._name = item.name;
-    this._pictureForPopup = pictureForPopup;
-    this._nameForPopup = nameForPopup;
-    this._openPopup = openPopup;
     this._handleCardClick = handleCardClick;
   }
 

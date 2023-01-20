@@ -1,21 +1,21 @@
 export class UserInfo {
-  constructor(obj) {
-    this._obj = obj;
-    this._namerr = obj.namer;
-    this._jober = obj.jober;
-    this.name = obj.name;
-    this.jober = obj.job;
+  constructor({ nameSelector, jobSelector }) {
+    this._userName = document.querySelector(`.${nameSelector}`);
+    this._userJob = document.querySelector(`.${jobSelector}`);
   }
 
   getUserInfo() {
-    return this._obj;
+    return {
+      name: this._userName.textContent,
+      job: this._userJob.textContent
+    }
+
   }
 
-  setUserInfo() {
-    this._namerr = this.name;
-    this._jober = this.job;
-
-    console.log(this._namerr);
-    console.log(this._jober);
+  setUserInfo(userInfo) {
+    this.userInfo = userInfo;
+    this._userName.textContent = this.userInfo.editName;
+    this._userJob.textContent = this.userInfo.editAbout;
+    return this.userInfo
   }
 }
