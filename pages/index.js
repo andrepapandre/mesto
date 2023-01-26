@@ -11,18 +11,12 @@ import { data } from "browserslist";
 // global scope
 const nameInput = document.getElementById("popup__input-name");
 const jobInput = document.getElementById("popup__input-job");
-const namer = document.querySelector(".profile__name");
-const jober = document.querySelector(".profile__name-info");
 const popupProfileOpenBtn = document.querySelector(".profile__edit-button");
 const popupCardOpenBtn = document.querySelector(".profile__add-btn");
-const popupEditProfile = document.querySelector(".popup_edit");
-const popupAddCard = document.querySelector(".popup_add");
 const formElementEdit = document.querySelector(".popup__form-edit");
 const formElementAdd = document.querySelector(".popup__form-add");
 const templateCard = document.querySelector(".template");
 const container = document.querySelector(".elements");
-const inputLink = document.getElementById("popup__input-link");
-const inputName = document.getElementById("popup__input-title");
 const popupImages = document.querySelector(".popup_image");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -70,7 +64,7 @@ const obj = {
 
 function editFormSubmitHandler(data) {
   userInfo.setUserInfo(data);
-  //не могу взять данные полей инпутов, !туда никак ничего не приходит!
+  popupEdit.closePopup();
 }
 
 const popupEdit = new PopupWithForm(".popup_edit", editFormSubmitHandler);
@@ -94,7 +88,6 @@ function handleSubmitAdd(data) {
   const card = createCard(cardData);
   cardsContainer.addItem(card);
   popupCard.closePopup();
-  //не могу взять данные полей инпутов, !туда никак ничего не приходит!
 }
 const popupCard = new PopupWithForm(".popup_add", handleSubmitAdd);
 popupCard.setEventListeners();
@@ -116,7 +109,8 @@ const cardsContainer = new Section(
   {
     items: cardsArray,
     renderer: (item) => {
-      createCard(item);
+      const one = createCard(item);
+      container.append(one);
     },
   },
   "elements"

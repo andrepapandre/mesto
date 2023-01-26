@@ -60,7 +60,6 @@ export class FormValidator {
       event.preventDefault();
       event.submitter.classList.add("popup__submit_inactive");
       event.submitter.setAttribute("disabled", true);
-      event.target.reset();
     });
     this._toggleButtonState(this.submitButton);
     this._inputList.forEach((inputElement) => {
