@@ -1,10 +1,10 @@
-import { Card } from "./Card.js";
-import { FormValidator, selectors } from "./FormValidator.js";
-import { Section } from "./Section.js";
-import { Popup } from "./Popup.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import { Card } from "../src/Card.js";
+import { FormValidator, selectors } from "../src/FormValidator.js";
+import { Section } from "../src/Section.js";
+import { Popup } from "../src/Popup.js";
+import { PopupWithImage } from "../src/PopupWithImage.js";
+import { PopupWithForm } from "../src/PopupWithForm.js";
+import { UserInfo } from "../src/UserInfo.js";
 import "./index.css";
 import { data } from "browserslist";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +57,7 @@ const validationforAddCard = new FormValidator(selectors, formElementEdit);
 const validationforEditCard = new FormValidator(selectors, formElementAdd);
 //
 const popupImage = new PopupWithImage(popupImages);
+popupImage.setEventListeners();
 function handleCardClick(name, link) {
   popupImage.openPopup(name, link);
 }
@@ -67,12 +68,13 @@ const obj = {
   jobSelector: "profile__name-info",
 };
 
-function editFormSubmitHandler() {
-  userInfo.setUserInfo();
-  //не могу взять данные полей инпутов, туда никак ничего не приходит
+function editFormSubmitHandler(data) {
+  userInfo.setUserInfo(data);
+  //не могу взять данные полей инпутов, !туда никак ничего не приходит!
 }
 
 const popupEdit = new PopupWithForm(".popup_edit", editFormSubmitHandler);
+popupEdit.setEventListeners();
 const userInfo = new UserInfo(obj);
 
 popupProfileOpenBtn.addEventListener("click", function () {
@@ -84,14 +86,18 @@ popupProfileOpenBtn.addEventListener("click", function () {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // add popup: handlers and functions
-function handleSubmitAdd() {
-  const cardData = { link: inputLink.value, name: inputName.value };
+function handleSubmitAdd(data) {
+  const cardData = {
+    name: data.title,
+    link: data.link,
+  };
   const card = createCard(cardData);
   cardsContainer.addItem(card);
   popupCard.closePopup();
-  //не могу взять данные полей инпутов, туда никак ничего не приходит
+  //не могу взять данные полей инпутов, !туда никак ничего не приходит!
 }
 const popupCard = new PopupWithForm(".popup_add", handleSubmitAdd);
+popupCard.setEventListeners();
 
 popupCardOpenBtn.addEventListener("click", () => {
   popupCard.openPopup();
@@ -104,7 +110,6 @@ popupCardOpenBtn.addEventListener("click", () => {
 const createCard = (item) => {
   const cardRender = new Card(item, templateCard, handleCardClick);
   const cardElement = cardRender.generateCard();
-  container.prepend(cardElement);
   return cardElement;
 };
 const cardsContainer = new Section(
@@ -116,6 +121,6 @@ const cardsContainer = new Section(
   },
   "elements"
 );
-cardsContainer.renderItems()
+cardsContainer.renderItems();
 validationforAddCard.enableValidation();
 validationforEditCard.enableValidation();

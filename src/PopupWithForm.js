@@ -16,6 +16,7 @@ export class PopupWithForm extends Popup {
       this.inputObj[input.name] = input.value;
     });
     return this.inputObj;
+    
   }
 
 

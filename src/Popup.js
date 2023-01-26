@@ -10,7 +10,6 @@ export class Popup {
 
   openPopup() {
     this._popup.classList.add(this._selector);
-    this.setEventListeners();
     this._page.addEventListener("keyup", this._handleEscClose);
   }
 
@@ -26,15 +25,13 @@ export class Popup {
   }
 
   setEventListeners() {
-    this._popups.forEach((item) => {
-      item.addEventListener("mousedown", (evt) => {
-        if (evt.target.classList.contains(this._buttonClose)) {
-          this.closePopup();
-        }
-        if (evt.target.classList.contains(this._selector)) {
-          this.closePopup();
-        }
-      });
+    this._popup.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains(this._buttonClose)) {
+        this.closePopup();
+      }
+      if (evt.target.classList.contains(this._selector)) {
+        this.closePopup();
+      }
     });
   }
 }
