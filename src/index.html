@@ -11,21 +11,19 @@
       <img
         class="header__logo"
         src="<%=require('../image/mesto__logo.svg')%>"
+        alt="Логотип бренда Место"
       />
-      alt="Логотип бренда Место" />
     </header>
     <main class="container">
       <section class="profile">
         <div class="profile__item">
-          <img
-            class="profile__image"
-            src="<%=require('../image/avatar-bro.jpg')%>"
-            alt="Аватар профиля"
-          />
+          <button class="profile__image-button">
+            <img class="profile__image" alt="Аватар профиля" />
+          </button>
           <div class="profile__cards">
-            <h1 class="profile__name">Andre Kiss</h1>
+            <h1 class="profile__name">test</h1>
             <button type="button" class="profile__edit-button"></button>
-            <p class="profile__name-info">Web-frontend developer</p>
+            <p class="profile__name-info">test</p>
           </div>
           <!--Закрывает profile-info-->
         </div>
@@ -133,6 +131,42 @@
       </section>
     </div>
 
+    <div class="popup popup_avatar">
+      <section class="popup__container">
+        <form
+          id="popupFormAvatar"
+          name="popupFormAdd"
+          method="post"
+          class="popup__form popup__form-avatar"
+          novalidate
+        >
+          <h2 class="popup__title">Обновить аватар</h2>
+
+          <section class="popup__section">
+            <input
+              type="url"
+              placeholder="Ссылка на аватар"
+              name="avatar"
+              class="popup__input"
+              id="popup__avatar-link"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <span class="popup__input-error" id="link-name-error"></span>
+          </section>
+          <button
+            class="popup__submit popupSet"
+            id="avatarSubmit"
+            type="submit"
+          >
+            <span class="popup__save">Сохранить</span>
+          </button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </section>
+    </div>
+
     <div class="popup popup_image">
       <div class="popup__image-container">
         <img class="popup__image" />
@@ -147,7 +181,13 @@
         <button type="button" class="element__delete-btn"></button>
         <div class="element__bottom">
           <h2 type="text" class="element__title" id="kokoko"></h2>
-          <button type="button" class="element__like" id="like"></button>
+          <div
+            class="element__like-zone"
+            style="display: flex; flex-direction: column"
+          >
+            <button type="button" class="element__like" id="like"></button>
+            <p class="element__like-counter"></p>
+          </div>
         </div>
       </article>
     </template>

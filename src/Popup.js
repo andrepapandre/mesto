@@ -11,7 +11,6 @@ export class Popup {
   openPopup() {
     this._popup.classList.add(this._selector);
     this._page.addEventListener("keyup", this._handleEscClose);
-    console.log(this._form)
   }
 
   _handleEscClose(e) {
