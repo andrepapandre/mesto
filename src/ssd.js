@@ -37,7 +37,7 @@ export class Api {
     });
   }
 
-  editAvatarImage({ avatar }) {
+  editAvatarImage({avatar}) {
     return fetch(this.url + "/users/me/avatar", {
       method: "PATCH",
       headers: {
@@ -82,7 +82,12 @@ export class Api {
       method: "DELETE",
       headers: {
         authorization: this.headers,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        name: "Marie Skłodowska Curie",
+        link: "Physicist and Chemist",
+      }),
     });
   }
 

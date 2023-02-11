@@ -73,13 +73,10 @@ const popupAvatar = new PopupWithForm({
     const avatarData = {
       avatar: data.avatar,
     };
-
     api.editAvatarImage(avatarData).then((res) => {
       console.log(res);
       userInfo.setUserInfo(res);
       popupAvatar.closePopup();
-
-
     });
   },
 });

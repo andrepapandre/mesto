@@ -40,7 +40,7 @@ export class Card {
     if (this._userId === this._ownerId) {
       this._bucketButton.addEventListener("click", () => {
         this._bucketHandler();
-        this._handleDeleteClick(this.idCard);
+        this._handleDeleteClick(this._idCard);
       });
     }
 
