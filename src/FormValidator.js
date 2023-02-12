@@ -12,20 +12,25 @@ export class FormValidator {
     this._form = form;
     this._inputList = Array.from(this._form.querySelectorAll(this._formInput));
     this.submitButton = this._form.querySelector(this._formSubmit);
-
-
   }
 
   _checkInputValidity = (inputElement) => {
+    // inputElement.value = inputElement.validity.valid;
+    // console.log(inputElement);
     const isValid = inputElement.validity.valid;
 
     const formSection = inputElement.closest(this._popupSection);
     const errorElement = formSection.querySelector(this._inputError);
 
+    const red = formSection.querySelector(".popup__line");
+    this._selectorr = "popup__line_error";
+
     if (isValid) {
       this._hideInputError(errorElement);
+      red.classList.remove(this._selectorr);
     } else {
       this._showInputError(errorElement, inputElement.validationMessage);
+      red.classList.add(this._selectorr);
     }
   };
 
@@ -74,7 +79,7 @@ export class FormValidator {
     this._toggleButtonState(this.submitButton);
     this._inputList.forEach((inputElement) => {
       const formSection = inputElement.closest(this._popupSection);
-    const errorElement = formSection.querySelector(this._inputError);
+      const errorElement = formSection.querySelector(this._inputError);
       this._hideInputError(errorElement);
     });
   };

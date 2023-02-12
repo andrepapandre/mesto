@@ -53,8 +53,8 @@ const cardsArray = [
   },
 ];
 //
-const validationforAddCard = new FormValidator(selectors, formElementEdit);
-const validationforEditCard = new FormValidator(selectors, formElementAdd);
+const validationforAddCard = new FormValidator(selectors, formElementAdd);
+const validationforEditCard = new FormValidator(selectors, formElementEdit);
 const validationforAvatar = new FormValidator(selectors, formElementAvatar);
 //
 const popupImage = new PopupWithImage(popupImages);
@@ -64,7 +64,7 @@ popupImage.setEventListeners();
 const obj = {
   nameSelector: "profile__name",
   jobSelector: "profile__name-info",
-  avatarSelector: "profile__image"
+  avatarSelector: "profile__image",
 };
 
 const popupAvatar = new PopupWithForm({
@@ -85,6 +85,7 @@ popupAvatar.setEventListeners();
 popupWithAvatar.addEventListener("click", function () {
   // const userInfoData = userInfo.getUserInfo();
   popupAvatar.openPopup();
+  validationforAvatar.resetValidation();
 });
 
 const popupEdit = new PopupWithForm({
@@ -113,7 +114,6 @@ popupProfileOpenBtn.addEventListener("click", function () {
     nameInput.value = userInfoData.name;
     jobInput.value = userInfoData.job;
   });
-
   popupEdit.openPopup();
 });
 
@@ -129,7 +129,7 @@ const popupCard = new PopupWithForm({
     api
       .addCard(cardData)
       .then((res) => {
-        const card = createCard(cardData);
+        const card = createCard(res);
         cardsContainer.addItem(card);
       })
       .catch((err) => {});
@@ -188,6 +188,7 @@ const cardsContainer = new Section(
   },
   "elements"
 );
+
 validationforAddCard.enableValidation();
 validationforEditCard.enableValidation();
 validationforAvatar.enableValidation();

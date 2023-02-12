@@ -74,6 +74,8 @@ export class Api {
         name: name,
         link: link,
       }),
+    }).then((res) => {
+      return res.ok ? res.json() : Promise.reject();
     });
   };
 
