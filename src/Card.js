@@ -1,3 +1,5 @@
+import { PopupWithConfirmation } from "./PopupWithConfirmation";
+
 export class Card {
   constructor(
     item,
@@ -36,12 +38,14 @@ export class Card {
     this._element.remove();
   };
 
+  
   _setEventListener() {
-    if (this._userId === this._ownerId) {
-      this._bucketButton.addEventListener("click", () => {
-        this._bucketHandler();
-        this._handleDeleteClick(this._idCard);
-      });
+    {
+      if (this._userId === this._ownerId) {
+        this._bucketButton.addEventListener("click", () => {
+          this._handleDeleteClick(this._idCard);
+        });
+      }
     }
 
     this._imageButton.addEventListener("click", () => {

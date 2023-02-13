@@ -28,6 +28,12 @@ export class PopupWithForm extends Popup {
     });
   }
 
+  setLoadText(text){
+    this.textSave = this._form.querySelector('.popup__save')
+    this.textSave.textContent = text
+    console.log(this.textSave);
+  }
+
   setEventListeners() {
     this.submit = () => {
       this._handleFormSubmit(this.getInputValues());

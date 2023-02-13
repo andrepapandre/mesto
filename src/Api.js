@@ -85,6 +85,8 @@ export class Api {
       headers: {
         authorization: this.headers,
       },
+    }).then((res) => {
+      return res.ok ? res.json() : Promise.reject();
     });
   }
 
