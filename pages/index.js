@@ -140,7 +140,7 @@ popupProfileOpenBtn.addEventListener("click", function () {
 const popupCard = new PopupWithForm({
   popup: ".popup_add",
   handleFormSubmit: (data) => {
-    popupCard.setLoadText("Сохранение...");
+    popupCard.setLoadText("Создание...");
     const cardData = {
       name: data.title,
       link: data.link,
@@ -155,9 +155,9 @@ const popupCard = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupCard.setLoadText("Сохранить");
+        popupCard.setLoadText("Созданть");
+        popupCard.closePopup();
       });
-    popupCard.closePopup();
   },
 });
 popupCard.setEventListeners();
