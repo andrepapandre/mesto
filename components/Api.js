@@ -10,6 +10,10 @@ export class Api {
     this.headers = headers;
   }
 
+  _processingServerResponse(res) {
+    return res.ok ? res.json() : Promise.reject();
+  }
+
   getUserInfo() {
     return fetch(this.url + "/users/me", {
       method: "GET",
@@ -17,7 +21,7 @@ export class Api {
         authorization: this.headers,
       },
     }).then((res) => {
-      return res.ok ? res.json() : Promise.reject();
+      return this._processingServerResponse(res);
     });
   }
 
@@ -33,11 +37,11 @@ export class Api {
         about: about,
       }),
     }).then((res) => {
-      return res.ok ? res.json() : Promise.reject();
+      return this._processingServerResponse(res);
     });
   }
 
-  editAvatarImage({avatar}) {
+  editAvatarImage({ avatar }) {
     return fetch(this.url + "/users/me/avatar", {
       method: "PATCH",
       headers: {
@@ -48,7 +52,7 @@ export class Api {
         avatar: avatar,
       }),
     }).then((res) => {
-      return res.ok ? res.json() : Promise.reject();
+      return this._processingServerResponse(res);
     });
   }
 
@@ -59,7 +63,7 @@ export class Api {
         authorization: this.headers,
       },
     }).then((res) => {
-      return res.ok ? res.json() : Promise.reject();
+      return this._processingServerResponse(res);
     });
   }
 
@@ -74,6 +78,8 @@ export class Api {
         name: name,
         link: link,
       }),
+    }).then((res) => {
+      return this._processingServerResponse(res);
     });
   };
 
@@ -82,12 +88,9 @@ export class Api {
       method: "DELETE",
       headers: {
         authorization: this.headers,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        link: "Physicist and Chemist",
-      }),
+    }).then((res) => {
+      return this._processingServerResponse(res);
     });
   }
 
@@ -99,7 +102,7 @@ export class Api {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      return res.ok ? res.json() : Promise.reject();
+      return this._processingServerResponse(res);
     });
   }
 
@@ -111,7 +114,7 @@ export class Api {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      return res.ok ? res.json() : Promise.reject();
+      return this._processingServerResponse(res);
     });
   }
 }

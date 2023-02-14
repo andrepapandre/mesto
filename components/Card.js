@@ -1,5 +1,3 @@
-import { PopupWithConfirmation } from "./PopupWithConfirmation";
-
 export class Card {
   constructor(
     item,
@@ -34,11 +32,11 @@ export class Card {
     this._likeButton.classList.toggle("element__like_black");
   };
 
-  _bucketHandler = () => {
+  _bucketHandler = (e) => {
+    e.preventDefault();
     this._element.remove();
   };
 
-  
   _setEventListener() {
     {
       if (this._userId === this._ownerId) {
