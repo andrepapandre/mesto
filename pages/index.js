@@ -36,11 +36,20 @@ const popupImage = new PopupWithImage(popupImages);
 popupImage.setEventListeners();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // edit popup
+
 const userInfoSelestors = {
   nameSelector: "profile__name",
   jobSelector: "profile__name-info",
   avatarSelector: "profile__image",
 };
+const userInfo = new UserInfo(userInfoSelestors);
+
+popupProfileOpenBtn.addEventListener("click", () => {
+  const userInfoData = userInfo.getUserInfo();
+  nameInput.value = userInfoData.name;
+  jobInput.value = userInfoData.job;
+  popupEdit.openPopup();
+});
 
 const popupAvatar = new PopupWithForm({
   popup: ".popup_avatar",
@@ -67,7 +76,6 @@ const popupAvatar = new PopupWithForm({
 popupAvatar.setEventListeners();
 
 popupWithAvatar.addEventListener("click", function () {
-  // const userInfoData = userInfo.getUserInfo();
   popupAvatar.openPopup();
   validationforAvatar.resetValidation();
 });
@@ -96,18 +104,8 @@ const popupEdit = new PopupWithForm({
   },
 });
 popupEdit.setEventListeners();
-const userInfo = new UserInfo(userInfoSelestors);
 const api = new Api(apiConfig);
 const avatar = document.querySelector(".profile__image");
-
-popupProfileOpenBtn.addEventListener("click", function () {
-  api.getUserInfo().then((data) => {
-    const userInfoData = userInfo.getUserInfo(data);
-    nameInput.value = userInfoData.name;
-    jobInput.value = userInfoData.job;
-  });
-  popupEdit.openPopup();
-});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // add popup: handlers and functions
@@ -145,9 +143,10 @@ popupCardOpenBtn.addEventListener("click", () => {
 // render and create cards
 const confirm = new PopupWithConfirmation({
   popup: popupConfirm,
-  handleFormSubmit: () => {},
+  handleFormSubmit: () => {
+    confirm.closePopup();
+  },
 });
-confirm.setEventListeners();
 
 const createCard = (item) => {
   const cardRender = new Card(item, templateCard, ownerId, {
@@ -157,12 +156,12 @@ const createCard = (item) => {
     handleDeleteClick: (id) => {
 
       confirm.openPopup();
+      confirm.setCallback(cardRender._bucketHandler);
 
       api
         .deleteCard(id)
-        .then((res, event) => {
-          event.preventDefault();
-          confirm.closePopup();
+        .then(() => {
+          // не понимаю, почему не могу что то получить здесь или вызвать alert 
         })
         .catch((err) => {
           console.log(err);
@@ -215,9 +214,9 @@ let ownerId = null;
 Promise.all([api.getUserInfo(), api.renderCards()])
   .then((res) => {
     ownerId = res[0]._id;
-    userInfo.setUserInfo(res[0]);
     console.log(res[1], res[0]);
     cardsContainer.renderItems(res[1]);
+    userInfo.setUserInfo(res[0]);
   })
   .catch((err) => {
     console.log(err);

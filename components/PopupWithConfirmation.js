@@ -4,15 +4,20 @@ export class PopupWithConfirmation extends Popup {
   constructor({ popup, handleFormSubmit }) {
     super(popup);
     this._popup = popup;
-
-    this.handleFormSubmit = handleFormSubmit;
+    this._handleFormSubmit = handleFormSubmit;
     this._selector = "popup_opened";
   }
 
-  setCallback() {
-    super._setEventListeners();
-    this._popup.addEventListener("submit", () => {
-      this._handleSubmitForm();
+
+
+  setCallback(func) {
+    super.setEventListeners();
+    this._popup.addEventListener("submit", (e) => {
+      this._handleFormSubmit();
+      func();
+      e.preventDefault();
+
     });
+
   }
 }

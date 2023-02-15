@@ -5,15 +5,14 @@ export class UserInfo {
     this._avatar = document.querySelector(`.${avatarSelector}`);
   }
 
-  getUserInfo(item) {
-    const name = item.name;
-    const job = item.about;
-    const avatar = item.avatar;
-    return {
-      name: name,
-      job: job,
-      avatar: avatar,
+  getUserInfo() {
+    const userInfo = {
+      name: this._userName.textContent,
+      job: this._userJob.textContent,
+      avatar: this._avatar.src
     };
+    return userInfo;
+    
   }
 
   setUserInfo(userInfo) {

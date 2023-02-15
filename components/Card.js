@@ -32,11 +32,9 @@ export class Card {
     this._likeButton.classList.toggle("element__like_black");
   };
 
-  _bucketHandler = (e) => {
-    e.preventDefault();
+  _bucketHandler = () => {
     this._element.remove();
   };
-
   _setEventListener() {
     {
       if (this._userId === this._ownerId) {
@@ -45,12 +43,10 @@ export class Card {
         });
       }
     }
-
     this._imageButton.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link });
     });
   }
-
   counterLikes(like) {
     this.counter = this._element.querySelector(".element__like-counter");
     this.counter.textContent = like;
@@ -91,6 +87,7 @@ export class Card {
     }
     //
     this.counterLikes();
+
     this.counter.textContent = this.likes.length;
     return this._element;
   };
